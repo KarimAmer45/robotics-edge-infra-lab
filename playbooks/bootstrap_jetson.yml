@@ -1,0 +1,9 @@
+---
+- name: Bootstrap Jetson edge nodes
+  hosts: jetson
+  become: true
+  roles:
+    - common
+    - docker
+    - ros2
+    - jetson

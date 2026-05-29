@@ -1,0 +1,8 @@
+jetson_project_root: /opt/robotics
+ros_distro: humble
+nvidia_container_runtime_package: nvidia-container-toolkit
+docker_packages:
+  - docker.io
+  - docker-compose-plugin
+deployment_images:
+  perception: ros2-object-detection:jetson

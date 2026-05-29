@@ -1,0 +1,24 @@
+---
+- name: Install Java JRE (required to run Jenkins agent JAR)
+  ansible.builtin.apt:
+    name: openjdk-17-jre-headless
+    state: present
+    update_cache: true
+
+- name: Create Jenkins workspace directory
+  ansible.builtin.file:
+    path: /opt/jenkins-agent
+    state: directory
+    owner: "{{ ops_user }}"
+    group: "{{ ops_user }}"
+    mode: "0755"
+
+# NOTE: After this role runs, complete agent registration manually:
+#   1. Download the agent JAR from https://<jenkins-master>/jnlpJars/agent.jar
+#      to /opt/jenkins-agent/agent.jar
+#   2. Create a systemd service that runs:
+#      java -jar /opt/jenkins-agent/agent.jar \
+#           -url https://<jenkins-master> \
+#           -secret <node-secret> \
+#           -name <node-name> \
+#           -workDir /opt/jenkins-agent

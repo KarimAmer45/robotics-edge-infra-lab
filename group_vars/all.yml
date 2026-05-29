@@ -1,0 +1,9 @@
+timezone: Europe/Berlin
+ops_user: ubuntu
+common_packages:
+  - git
+  - curl
+  - htop
+  - tmux
+  - python3-pip
+  - python3-venv
